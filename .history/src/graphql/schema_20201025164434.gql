@@ -1,0 +1,44 @@
+type Station {
+  name: String! @unique
+  id: String
+  description: String
+  logo: String
+  images: [String!]
+  keywords: [String]
+}
+
+type User {
+  name: String!
+  username: String! @unique
+  email: String! @unique
+  avatar: String
+  images: [String!]
+}
+
+type Permissions {
+  addStation: Boolean!
+  createStation: Boolean!
+  viewStation: Boolean!
+  editStation: Boolean!
+  deleteStation: Boolean!
+  manageStation: Boolean!
+  createPost: Boolean!
+  viewPost: Boolean!
+  editOwnPost: Boolean!
+  editAnyPost: Boolean!
+  deleteOwnPost: Boolean!
+  deleteAnyPost: Boolean!
+  createUser: Boolean!
+  viewUser: Boolean!
+  editUser: Boolean!
+  deleteUser: Boolean!
+}
+
+type Post {
+  title: String!
+  slug: String!
+  html: String!
+  isFeatured: Boolean!
+  author: User!
+  isDeleted: Boolean!
+}

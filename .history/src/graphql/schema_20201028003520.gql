@@ -1,0 +1,64 @@
+type Post {
+  author: User!
+  slug: String!
+  title: String!
+  html: String!
+  created: Time
+}
+
+type Station {
+  name: String!
+  identifier: String
+  description: String
+  logo: String
+  created: Time
+}
+
+type User {
+  name: String!
+  email: String!
+  created: Time
+}
+
+type AudioFile {
+  autoPlay: Boolean!
+  controls: Boolean!
+  crossOrigin: String
+  currentTime: Float
+  remotePlayback: Boolean
+  duration: Float!
+  loop: Boolean!
+  muted: Boolean
+  name: String!
+  preload: String
+  source: String!
+  title: String!
+  codec: String
+}
+
+type VideoFile {
+  autoPlay: Boolean!
+  pictureInPicture: Boolean
+  buffered: AudioVideoTimeRange
+  controls: Boolean!
+  controlsList: String
+  crossOrigin: String
+  currentTime: Float
+  disablePIP: Boolean # disablePictureInPicture property
+  disableRP: Boolean  # disableRemotePlayback property
+  duration: Float     # readonly
+  displayHeight: Int  # in PX
+  loop: Boolean!
+  muted: Boolean
+  playsInline: Boolean
+  poster: String      # url to an image to be displayed on video
+  preload: String     # [none, metadata, auto] ('' implies auto)
+  source: String!     # url of video
+  displayWidth: Int   # in PX
+}
+
+type AudioVideoTimeRange {
+  length: Long
+  start: Int
+  end: Int
+}

@@ -1,0 +1,80 @@
+type Station {
+  name: String! @unique
+  identifier: String
+  description: String
+  logo: String
+  images: [String!]
+  keywords: [String]
+  owner: User
+  members: [User!]
+}
+
+type User {
+  name: String!
+  username: String! @unique
+  email: String! @unique
+  avatar: String
+  images: [String!]
+  station: Station @relation
+}
+
+type Permissions {
+  addStation: Boolean!
+  createStation: Boolean!
+  viewStation: Boolean!
+  editStation: Boolean!
+  deleteStation: Boolean!
+  manageStation: Boolean!
+  createPost: Boolean!
+  viewPost: Boolean!
+  editOwnPost: Boolean!
+  editAnyPost: Boolean!
+  deleteOwnPost: Boolean!
+  deleteAnyPost: Boolean!
+  createUser: Boolean!
+  viewUser: Boolean!
+  editUser: Boolean!
+  deleteUser: Boolean!
+}
+
+type Post {
+  title: String!
+  slug: String!
+  html: String!
+  isFeatured: Boolean!
+  author: User!
+  isDeleted: Boolean!
+}
+
+type Query {
+  users: [User!]
+  user(id: ID!): User
+  stations: [Station!]
+  station(id: ID!): Station
+  posts: [Post!]
+  post(id: ID!): Post
+}
+
+type Mutation {
+  createUser(data: UserInput!): User!
+  updateUser(id: ID! data: UserInput!): User
+  deleteUser(id: ID!): User
+  createStation(data: StationInput!): Station!
+  updateStation(id: ID! data: StationInput!): Station
+  deleteStation(id: ID!): Station
+}
+
+input StationInput {
+  name: String!
+  identifier: String
+  rundown: String
+  motto: String
+  owners: [User!]
+  members: [User!]
+}
+
+input UserInput {
+  name: String!
+  username: String!
+  email: String!
+}

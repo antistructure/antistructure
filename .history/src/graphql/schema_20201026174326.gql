@@ -1,0 +1,87 @@
+type Mutation {
+  updateUser(
+    id: ID!
+    data: UserInput!
+  ): User
+  createUser(data: UserInput!): User!
+  updatePost(
+    id: ID!
+    data: PostInput!
+  ): Post
+  updateStation(
+    id: ID!
+    data: StationInput!
+  ): Station
+  deleteUser(id: ID!): User
+  deletePost(id: ID!): Post
+  createPost(data: PostInput!): Post!
+  deleteStation(id: ID!): Station
+  createStation(data: StationInput!): Station!
+}
+
+type Post {
+  author: User!
+  slug: String!
+  title: String!
+  html: String!
+}
+
+input PostAuthorRelation {
+  create: UserInput
+  connect: ID
+}
+
+input PostInput {
+  title: String!
+  slug: String!
+  html: String!
+  author: PostAuthorRelation
+}
+
+type Query {
+  users(
+    _size: Int
+    _cursor: String
+  ): UserPage!
+  findPostByID(id: ID!): Post
+  findUserByID(id: ID!): User
+  findStationByID(id: ID!): Station
+  me: User!
+  stations(
+    _size: Int
+    _cursor: String
+  ): StationPage!
+}
+
+type Station {
+  name: String!
+  identifier: String
+  description: String
+  logo: String
+}
+
+input StationInput {
+  name: String!
+}
+
+type StationPage {
+  data: [Station]!
+  after: String
+  before: String
+}
+
+type User {
+  name: String!
+  email: String!
+}
+
+input UserInput {
+  name: String!
+  email: String!
+}
+
+type UserPage {
+  data: [User]!
+  after: String
+  before: String
+}

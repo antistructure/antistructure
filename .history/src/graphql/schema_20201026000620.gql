@@ -1,0 +1,14 @@
+type Station {
+  name: String! @unique
+}
+
+type User {
+  name: String!
+  email: String! @unique
+}
+
+type Query {
+  me: User!
+  users: [User!]
+  stations: [Station!]
+}

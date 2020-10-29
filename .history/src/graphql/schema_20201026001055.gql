@@ -1,0 +1,21 @@
+type Station {
+  name: String! @unique
+}
+
+type User {
+  name: String!
+  email: String! @unique
+}
+
+type Post {
+  title: String!
+  slug: String!
+  html: String!
+  author: User!
+}
+
+type Query {
+  me: User!
+  users: [User!]
+  stations: [Station!]
+}

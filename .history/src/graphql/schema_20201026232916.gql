@@ -1,0 +1,13 @@
+type Post {
+  author: User!
+  slug: String!
+  title: String!
+  html: String!
+}
+
+type Station {
+  name: String!
+  identifier: String
+  description: String
+  logo: String
+}
